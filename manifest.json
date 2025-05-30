@@ -1,0 +1,41 @@
+{
+  "manifest_version": 3,
+  "name": "PDF Table to Excel Converter Pro",
+  "version": "1.0",
+  "description": "Extract tables from PDF pages on repotic.in and download them as plain Excel files. No formatting is applied. Only table data is preserved.",
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "content_scripts": [{
+    "matches": ["https://www.repotic.in/pdftotally*"],
+    "js": ["content.js"],
+    "run_at": "document_idle"
+  }],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "downloads"
+  ],
+  "host_permissions": [
+    "https://www.repotic.in/*"
+  ],
+  "web_accessible_resources": [{
+    "resources": ["xlsx.min.js"],
+    "matches": ["https://www.repotic.in/*"]
+  }],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'"
+  }
+}
+
+
